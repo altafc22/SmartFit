@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="10dp"
+    tools:context=".ui.WaterAlarmActivity">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/edit_text_bg">
+
+        <EditText
+            android:id="@+id/et_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/transparent"
+            android:fontFamily="@font/montserrat_regular"
+            android:hint="Current Weight (Kg.)"
+            android:inputType="number"
+            android:maxLength="3"
+            android:maxLines="1" />
+
+    </LinearLayout>
+
+    <!-- <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="20dp"
+         android:background="@drawable/edit_text_bg">
+
+         <EditText
+             android:id="@+id/et_age"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_margin="10dp"
+             android:background="@color/transparent"
+             android:fontFamily="@font/montserrat_regular"
+             android:hint="Age"
+             android:inputType="numberDecimal"
+             android:maxLength="3"
+             android:maxLines="1" />
+
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="20dp"
+         android:background="@drawable/edit_text_bg">
+
+         <EditText
+             android:id="@+id/et_height"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_margin="10dp"
+             android:background="@color/transparent"
+             android:fontFamily="@font/montserrat_regular"
+             android:hint="Height (cm.)"
+             android:inputType="numberDecimal"
+             android:maxLength="4"
+             android:maxLines="1" />
+
+     </LinearLayout>-->
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/button_primary"
+        android:fontFamily="@font/montserrat_bold"
+        android:onClick="checkWater"
+        android:text="Check Water You Need Daily"
+        android:textAlignment="center"
+        android:textColor="@color/white" />
+
+</LinearLayout>

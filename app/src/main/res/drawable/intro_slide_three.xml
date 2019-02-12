@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- Style for "rectangle_" -->
+    <!-- Add this snippet to layer-list xml in drawable. -->
+    <item android:height="250dp" android:id="@+id/red_card">
+        <shape android:shape="rectangle">
+            <gradient android:type="linear"
+                android:useLevel="true"
+                android:endColor="#34b7ac"
+                android:startColor="#25A499"
+                android:angle="90" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,12 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Style for "rectangle_" -->
+    <!-- Add this snippet to layer-list xml in drawable. -->
+    <item android:id="@+id/yellow_card">
+        <shape android:shape="rectangle">
+            <corners android:radius="8dp" />
+            <solid android:color="#fff39c12" />
+        </shape>
+    </item>
+
+</layer-list>

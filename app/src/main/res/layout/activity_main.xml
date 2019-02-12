@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.MainActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/relLayoutTopBar"
+            android:layout_alignParentTop="true">
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:id="@+id/appbarTop"
+                android:layout_height="50dp"
+                android:background="@drawable/shadow_bottom">
+
+
+                <android.support.design.widget.TabLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tabs">
+
+
+                </android.support.design.widget.TabLayout>
+
+            </android.support.design.widget.AppBarLayout>
+
+        </RelativeLayout>-->
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/relLayoutTopBar"
+            android:layout_alignParentTop="true">
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:id="@+id/appbarTop"
+                android:gravity="center"
+                android:layout_height="50dp"
+                android:background="@drawable/shadow_bottom">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dashboard_title"
+                    android:fontFamily="@font/montserrat_light"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+               <!-- <android.support.design.widget.TabLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tabs">
+
+                </android.support.design.widget.TabLayout>-->
+
+            </android.support.design.widget.AppBarLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/relLayoutTopBar"
+            android:id="@+id/relLayoutMiddle">
+
+           <!-- <android.support.v4.view.ViewPager
+                android:layout_width="match_parent"
+                android:id="@+id/container"
+                android:layout_height="match_parent">
+
+
+
+            </android.support.v4.view.ViewPager>-->
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.CardView
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="4"
+                        cardview:cardBackgroundColor="@color/colorPrimaryDark"
+                        xmlns:cardview="http://schemas.android.com/apk/res-auto"
+                        cardview:cardCornerRadius="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/walking_distance"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp"
+                                android:layout_marginBottom="20dp"
+                                android:fontFamily="@font/montserrat_light"/>
+
+                            <ImageView
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:contentDescription="TODO"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/speed" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.78 km"
+                                android:textColor="@android:color/white"
+                                android:textSize="48sp"
+                                android:fontFamily="@font/montserrat_medium"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Today at 8:31 AM"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/montserrat_light"/>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <android.support.v7.widget.CardView
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:layout_marginRight="5dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardBackgroundColor="@color/dark_red"
+                            android:padding="10dp"
+                            android:layout_weight="2">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/steps"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="18sp"
+                                    android:padding="2dp"
+                                    android:fontFamily="@font/montserrat_light"/>
+
+
+                                <ImageView
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
+                                    android:contentDescription="TODO"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/footprint_line" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="right">
+
+                                    <TextView
+                                        android:id="@+id/tv_footstepCount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="5dp"
+                                        android:fontFamily="@font/montserrat_semibold"
+                                        android:text="--"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="18sp" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="steps"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="18sp"
+                                        android:fontFamily="@font/montserrat_regular"/>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            app:cardCornerRadius="10dp"
+                            android:layout_marginLeft="5dp"
+                            app:cardBackgroundColor="@color/deeppurple"
+                            android:padding="10dp"
+                            android:layout_weight="2">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/steps"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="18sp"
+                                    android:padding="2dp"
+                                    android:fontFamily="@font/montserrat_light"/>
+
+
+                                <ImageView
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
+                                    android:contentDescription="TODO"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/moon_line" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="right">
+
+                                    <TextView
+                                        android:id="@+id/tv_sleepCount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="5dp"
+                                        android:fontFamily="@font/montserrat_semibold"
+                                        android:text="--"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="18sp" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="min"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="18sp"
+                                        android:fontFamily="@font/montserrat_regular"/>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </android.support.v7.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.v7.widget.CardView
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:layout_marginRight="5dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardBackgroundColor="@color/light_blue"
+                            android:padding="10dp"
+                            android:layout_weight="2">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/heart_rate"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="18sp"
+                                    android:padding="2dp"
+                                    android:fontFamily="@font/montserrat_light"/>
+
+
+                                <ImageView
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
+                                    android:contentDescription="TODO"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/heart_rate_line" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="right">
+
+                                    <TextView
+                                        android:id="@+id/tv_heartRateCount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="5dp"
+                                        android:fontFamily="@font/montserrat_semibold"
+                                        android:text="--"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="18sp" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="bpm"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="18sp"
+                                        android:fontFamily="@font/montserrat_regular"/>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </android.support.v7.widget.CardView>
+
+
+                        <android.support.v7.widget.CardView
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:layout_marginLeft="5dp"
+                            app:cardCornerRadius="10dp"
+                            android:onClick="gotoWaterAlarmActivity"
+                            app:cardBackgroundColor="@color/dark_green"
+                            android:padding="10dp"
+                            android:layout_weight="2">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/water"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="18sp"
+                                    android:padding="2dp"
+                                    android:fontFamily="@font/montserrat_light"/>
+
+
+                                <ImageView
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
+                                    android:contentDescription="TODO"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/drop_line" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="right">
+
+                                    <TextView
+                                        android:id="@+id/tv_waterCount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="5dp"
+                                        android:fontFamily="@font/montserrat_semibold"
+                                        android:text="--"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="18sp" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="ltr"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="18sp"
+                                        android:fontFamily="@font/montserrat_regular"/>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </android.support.v7.widget.CardView>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/relLayoutBotBar">
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:id="@+id/appbarBottom"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:layout_gravity="bottom">
+
+                <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="22dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:weightSum="100"
+                        android:layout_marginRight="16dp"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="20"
+                            android:src="@drawable/home_line" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="20"
+                            android:src="@drawable/footprint_line" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="20"
+                            android:src="@drawable/fire_line" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="20"
+                            android:src="@drawable/moon_line" />
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="20"
+                            android:src="@drawable/user_line" />
+                    </LinearLayout>
+                </android.support.v7.widget.Toolbar>
+
+            </android.support.design.widget.AppBarLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
