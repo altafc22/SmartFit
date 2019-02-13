@@ -42,5 +42,14 @@
     <string name="heart_rate">Heart Rate</string>
     <string name="sleep">Sleep</string>
     <string name="steps">Steps</string>
+    <string name="pedometer">Pedometer</string>
+
+    <string name="btn_clear">Clear</string>
+    <string name="btn_reset">Reset</string>
+    <string name="btn_clear_click">Clear Click</string>
+    <string name="calories">Calories</string>
+    <string name="today">Today</string>
+    <string name="average">Average</string>
+    <string name="total">Total</string>
 
 </resources>
