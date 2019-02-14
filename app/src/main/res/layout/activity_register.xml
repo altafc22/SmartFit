@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LoginActivity"
+    tools:context=".ui.RegisterActivity"
     android:gravity="center_horizontal"
     android:background="@color/colorPrimaryDark">
 
@@ -96,7 +96,7 @@
 
                <RadioGroup
                    android:layout_width="match_parent"
-                   android:id="@+id/gender"
+                   android:id="@+id/radioGroupGender"
                    android:orientation="horizontal"
                    android:layout_marginBottom="10dp"
                    android:layout_height="wrap_content">
@@ -106,11 +106,13 @@
                        android:layout_height="wrap_content"
                        android:fontFamily="@font/montserrat_regular"
                        android:text="Male"
+                       android:id="@+id/rd_male"
                        android:layout_marginRight="10dp"/>
 
                    <RadioButton
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
+                       android:id="@+id/rd_female"
                        android:fontFamily="@font/montserrat_regular"
                        android:text="Female"/>
 
@@ -242,6 +244,13 @@
                    android:onClick="saveData"
                    android:fontFamily="@font/montserrat_bold"
                    android:textAlignment="center"/>
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progressBar"
+                    android:layout_marginTop="10dp"
+                    android:visibility="invisible"/>
 
            </LinearLayout>
 

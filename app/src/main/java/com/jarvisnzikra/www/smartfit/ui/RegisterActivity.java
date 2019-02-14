@@ -1,41 +1,69 @@
 package com.jarvisnzikra.www.smartfit.ui;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jarvisnzikra.www.smartfit.R;
+import com.jarvisnzikra.www.smartfit.RequestHandler;
+import com.jarvisnzikra.www.smartfit.URLs;
+import com.jarvisnzikra.www.smartfit.User;
+import com.jarvisnzikra.www.smartfit.UserSharedPrefManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class RegisterActivity extends AppCompatActivity {
 
     Button showPass;
+
+    RadioGroup radioGroupGender;
     TextView tv_dob;
-    EditText etPassword,etUsername,etName;
+    EditText etUsername,etPassword,etName,etWeight,etHeight,etEmail,etMobile;
+
     final Calendar myCalendar = Calendar.getInstance();
     final Calendar myCalendar2 = Calendar.getInstance();
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        etPassword =findViewById(R.id.et_password);
-        etName =findViewById(R.id.et_name);
-        etUsername =findViewById(R.id.et_username);
-        showPass = findViewById(R.id.showPassword);
-        tv_dob = findViewById(R.id.et_dob);
 
+        etName =findViewById(R.id.et_name);
+        etHeight =findViewById(R.id.et_height);
+        etWeight =findViewById(R.id.et_weight);
+        radioGroupGender =findViewById(R.id.radioGroupGender);
+        radioGroupGender =findViewById(R.id.radioGroupGender);
+        tv_dob = findViewById(R.id.et_dob);
+        etEmail =findViewById(R.id.et_email);
+        etMobile =findViewById(R.id.et_mobile);
+        etUsername =findViewById(R.id.et_username);
+        etPassword =findViewById(R.id.et_password);
+        etWeight =findViewById(R.id.et_weight);
+
+        showPass = findViewById(R.id.showPassword);
         showPass.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 if(etPassword.length()>0){
@@ -92,6 +120,168 @@ public class RegisterActivity extends AppCompatActivity {
     public void saveData(View v)
     {
 
+        final String name = etName.getText().toString().trim();
+        final String height = etHeight.getText().toString().trim();
+        final String weight = etWeight.getText().toString().trim();
+        final String gender = ((RadioButton) findViewById(radioGroupGender.getCheckedRadioButtonId())).getText().toString();
+        final String dob = tv_dob.getText().toString().trim();
+        final String email = etEmail.getText().toString().trim();
+        final String mobile = etMobile.getText().toString().trim();
+        final String username = etUsername.getText().toString().trim();
+        final String password = etPassword.getText().toString().trim();
+
+
+        //first we will do the validations
+
+
+        if (TextUtils.isEmpty(name)) {
+            etName.setError("Please enter name");
+            etName.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(height)) {
+            etHeight.setError("Please enter height in cm");
+            etHeight.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(weight)) {
+            etHeight.setError("Please enter height in cm");
+            etHeight.requestFocus();
+            return;
+        }
+
+        RadioButton rd = findViewById(R.id.rd_male);
+        if (radioGroupGender.getCheckedRadioButtonId() == -1)
+        {
+
+            rd.setError("please select gender");
+        }
+        else
+        {
+            rd.setError(null);
+        }
+
+        if (TextUtils.isEmpty(dob)) {
+            tv_dob.setError("Please enter date of birth");
+            tv_dob.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(email)) {
+            etEmail.setError("Please enter your email");
+            etEmail.requestFocus();
+            return;
+        }
+
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            etEmail.setError("Enter a valid email");
+            etEmail.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(mobile)) {
+            etMobile.setError("Please enter date of birth");
+            etMobile.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(username)) {
+            etUsername.setError("Please enter username");
+            etUsername.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            etPassword.setError("Enter a password");
+            etPassword.requestFocus();
+            return;
+        }
+
+        //if it passes all the validations
+
+        class RegisterUser extends AsyncTask<Void, Void, String> {
+
+            private ProgressBar progressBar;
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                //creating request handler object
+                RequestHandler requestHandler = new RequestHandler();
+
+                //creating request parameters
+                HashMap<String, String> params = new HashMap<>();
+                params.put("username", username);
+                params.put("password", password);
+                params.put("email", email);
+                params.put("name", name);
+                params.put("height",height);
+                params.put("weight",weight);
+                params.put("gender", gender);
+                params.put("dob",dob);
+                params.put("mobile_no",mobile);
+                //returing the response
+                return requestHandler.sendPostRequest(URLs.URL_REGISTER, params);
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                //displaying the progress bar while user registers on the server
+                progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                progressBar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                //hiding the progressbar after completion
+                progressBar.setVisibility(View.GONE);
+
+                try {
+                    //converting response to json object
+                    JSONObject obj = new JSONObject(s);
+
+                    //if no error in response
+                    if (!obj.getBoolean("error")) {
+                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+
+                        //getting the user from the response
+                        JSONObject userJson = obj.getJSONObject("user");
+
+                        //creating a new user object
+                        User user = new User(
+                                userJson.getInt("id"),
+                                userJson.getString("username"),
+                                userJson.getString("password"),
+                                userJson.getString("email"),
+                                userJson.getString("name"),
+                                userJson.getString("height"),
+                                userJson.getString("weight"),
+                                userJson.getString("gender"),
+                                userJson.getString("dob"),
+                                userJson.getString("mobile_no")
+                        );
+
+                        //storing the user in shared preferences
+                        UserSharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+
+                        //starting the profile activity
+                        finish();
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Some error occurred", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        //executing the async task
+        RegisterUser ru = new RegisterUser();
+        ru.execute();
     }
 
 }
