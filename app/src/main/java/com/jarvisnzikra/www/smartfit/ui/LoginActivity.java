@@ -1,7 +1,9 @@
 package com.jarvisnzikra.www.smartfit.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -16,10 +18,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.jarvisnzikra.www.smartfit.R;
-import com.jarvisnzikra.www.smartfit.RequestHandler;
-import com.jarvisnzikra.www.smartfit.URLs;
-import com.jarvisnzikra.www.smartfit.User;
-import com.jarvisnzikra.www.smartfit.UserSharedPrefManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,6 +25,19 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private static final String SHARED_PREF_NAME = "simplifiedcodingsharedpref";
+    private static final String KEY_ID = "keyid";
+    private static final String KEY_USERNAME = "keyusername";
+    private static final String KEY_PASSWORD = "keyuserpassword";
+    private static final String KEY_EMAIL = "keyemail";
+    private static final String KEY_NAME = "keyname";
+    private static final String KEY_WEIGHT = "keyweight";
+    private static final String KEY_HEIGHT_FT = "keyheight_ft";
+    private static final String KEY_HEIGHT_IN = "keyheight_in";
+    private static final String KEY_GENDER = "keygender";
+    private static final String KEY_DOB = "keydob";
+    private static final String KEY_MOBILE = "keymobile";
 
     Button showPass;
     EditText etPassword,etUsername;
@@ -37,8 +48,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+
+
         //if the user is already logged in we will directly start the profile activity
-        if (UserSharedPrefManager.getInstance(this).isLoggedIn()) {
+        if (isLoggedIn()) {
             finish();
             startActivity(new Intent(this, MainActivity.class));
             return;
@@ -93,78 +107,42 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        //if everything is fine
 
-        class UserLogin extends AsyncTask<Void, Void, String> {
+       /* SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(KEY_ID, user.getId());
+        editor.putString(KEY_USERNAME, user.getUsername());
+        editor.putString(KEY_PASSWORD, user.getPassword());
+        editor.putString(KEY_EMAIL, user.getEmail());
+        editor.putString(KEY_NAME, user.getName());
+        editor.putString(KEY_HEIGHT_FT, user.getHeight_ft());
+        editor.putString(KEY_HEIGHT_IN, user.getHeight_in());
+        editor.putString(KEY_WEIGHT, user.getWeight());
+        editor.putString(KEY_GENDER, user.getGender());
+        editor.putString(KEY_DOB, user.getDob());
+        editor.putString(KEY_MOBILE, user.getMobile_no());
+        editor.apply();
+        */
 
-            ProgressBar progressBar;
+                /*
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                sharedPreferences.getInt(KEY_ID, -1);
+                sharedPreferences.getString(KEY_USERNAME, null);
+                sharedPreferences.getString(KEY_PASSWORD, null);
+                sharedPreferences.getString(KEY_EMAIL, null);
+                sharedPreferences.getString(KEY_NAME, null);
+                sharedPreferences.getString(KEY_WEIGHT, null);
+                sharedPreferences.getString(KEY_HEIGHT_FT, null);
+                sharedPreferences.getString(KEY_HEIGHT_IN, null);
+                sharedPreferences.getString(KEY_GENDER, null);
+                sharedPreferences.getString(KEY_DOB, null);
+                sharedPreferences.getString(KEY_MOBILE, null);
+                */
+    }
 
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                progressBar = (ProgressBar) findViewById(R.id.progressBar);
-                progressBar.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                progressBar.setVisibility(View.GONE);
-
-                try {
-                    //converting response to json object
-                    JSONObject obj = new JSONObject(s);
-
-                    //if no error in response
-                    if (!obj.getBoolean("error")) {
-                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-
-                        //getting the user from the response
-                        JSONObject userJson = obj.getJSONObject("user");
-
-                        //creating a new user object
-                        User user = new User(
-                                userJson.getInt("id"),
-                                userJson.getString("username"),
-                                userJson.getString("password"),
-                                userJson.getString("email"),
-                                userJson.getString("name"),
-                                userJson.getString("weight"),
-                                userJson.getString("height"),
-                                userJson.getString("gender"),
-                                userJson.getString("dob"),
-                                userJson.getString("mobile_no")
-                        );
-
-                        //storing the user in shared preferences
-                        UserSharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
-
-                        //starting the profile activity
-                        finish();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            protected String doInBackground(Void... voids) {
-                //creating request handler object
-                RequestHandler requestHandler = new RequestHandler();
-
-                //creating request parameters
-                HashMap<String, String> params = new HashMap<>();
-                params.put("username", username);
-                params.put("password", password);
-                //returing the response
-                return requestHandler.sendPostRequest(URLs.URL_LOGIN, params);
-            }
-        }
-        UserLogin ul = new UserLogin();
-        ul.execute();
+    public boolean isLoggedIn() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USERNAME, null) != null;
     }
 
     public void gotoRegister(View v){

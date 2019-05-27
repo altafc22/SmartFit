@@ -38,15 +38,28 @@
                    android:background="@drawable/edit_text_bg"
                    android:layout_width="match_parent"
                    android:layout_marginBottom="10dp"
-                   android:layout_height="wrap_content">
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:weightSum="10">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="6.8"
+                       android:textSize="18sp"
+                       android:layout_margin="10dp"
+                       android:fontFamily="@font/montserrat_regular"
+                       android:text="Name"/>
 
                    <EditText
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
                        android:id="@+id/et_name"
                        android:hint="Name"
+                       android:layout_weight="3.2"
                        android:fontFamily="@font/montserrat_regular"
-                       android:layout_margin="10dp"
+                       android:layout_marginTop="10dp"
+                       android:layout_marginRight="10dp"
                        android:maxLines="1"
                        android:background="@color/transparent"
                        android:maxLength="25"/>
@@ -58,7 +71,19 @@
                    android:background="@drawable/edit_text_bg"
                    android:layout_width="match_parent"
                    android:layout_marginBottom="10dp"
-                   android:layout_height="wrap_content">
+                   android:weightSum="10"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="6.8"
+                       android:textSize="18sp"
+                       android:layout_margin="10dp"
+                       android:fontFamily="@font/montserrat_regular"
+                       android:text="Weight"/>
+
 
                    <EditText
                        android:layout_width="match_parent"
@@ -66,8 +91,10 @@
                        android:id="@+id/et_weight"
                        android:hint="Current Weight (Kg.)"
                        android:fontFamily="@font/montserrat_regular"
-                       android:layout_margin="10dp"
+                       android:layout_marginTop="10dp"
                        android:maxLines="1"
+                       android:layout_weight="3.2"
+                       android:layout_marginRight="10dp"
                        android:inputType="number"
                        android:background="@color/transparent"
                        android:maxLength="3"/>
@@ -78,19 +105,56 @@
                    android:background="@drawable/edit_text_bg"
                    android:layout_width="match_parent"
                    android:layout_marginBottom="10dp"
+                   android:orientation="horizontal"
+                   android:weightSum="10"
                    android:layout_height="wrap_content">
 
-                   <EditText
+                   <TextView
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:id="@+id/et_height"
-                       android:hint="Height (cm.)"
-                       android:fontFamily="@font/montserrat_regular"
+                       android:layout_weight="6.8"
+                       android:textSize="18sp"
                        android:layout_margin="10dp"
-                       android:maxLines="1"
-                       android:inputType="numberDecimal"
-                       android:background="@color/transparent"
-                       android:maxLength="4"/>
+                       android:fontFamily="@font/montserrat_regular"
+                       android:text="Height"/>
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal"
+                       android:layout_weight="3.2"
+                       android:weightSum="2">
+
+                       <EditText
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:id="@+id/et_height_ft"
+                           android:hint="Foot"
+                           android:textAlignment="center"
+                           android:layout_weight="1"
+                           android:fontFamily="@font/montserrat_regular"
+                           android:layout_margin="10dp"
+                           android:maxLines="1"
+                           android:inputType="numberDecimal"
+                           android:background="@color/transparent"
+                           android:maxLength="1"/>
+
+                       <EditText
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:id="@+id/et_height_in"
+                           android:hint="Inch"
+                           android:textAlignment="center"
+                           android:layout_weight="1"
+                           android:fontFamily="@font/montserrat_regular"
+                           android:layout_marginTop="10dp"
+                           android:layout_marginRight="10dp"
+                           android:maxLines="1"
+                           android:inputType="numberDecimal"
+                           android:background="@color/transparent"
+                           android:maxLength="2"/>
+
+                   </LinearLayout>
 
                </LinearLayout>
 
@@ -98,22 +162,34 @@
                    android:layout_width="match_parent"
                    android:id="@+id/radioGroupGender"
                    android:orientation="horizontal"
+                   android:background="@drawable/edit_text_bg"
                    android:layout_marginBottom="10dp"
-                   android:layout_height="wrap_content">
+                   android:layout_height="45dp"
+                   android:gravity="center">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="6.8"
+                       android:textSize="18sp"
+                       android:layout_margin="10dp"
+                       android:fontFamily="@font/montserrat_regular"
+                       android:text="Name"/>
 
                    <RadioButton
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:fontFamily="@font/montserrat_regular"
                        android:text="Male"
-                       android:id="@+id/rd_male"
-                       android:layout_marginRight="10dp"/>
+                       android:layout_margin="10dp"
+                       android:id="@+id/rd_male"/>
 
                    <RadioButton
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:id="@+id/rd_female"
                        android:fontFamily="@font/montserrat_regular"
+                       android:layout_margin="10dp"
                        android:text="Female"/>
 
                </RadioGroup>
@@ -122,9 +198,21 @@
                    android:background="@drawable/edit_text_bg"
                    android:layout_width="match_parent"
                    android:layout_marginBottom="10dp"
-                   android:layout_height="wrap_content">
+                   android:layout_height="wrap_content"
+                   android:weightSum="10"
+                   android:orientation="horizontal">
 
                    <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="6.8"
+                       android:textSize="18sp"
+                       android:layout_margin="10dp"
+                       android:fontFamily="@font/montserrat_regular"
+                       android:text="DOB"/>
+
+                   <TextView
+                       android:layout_weight="3.2"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
                        android:id="@+id/et_dob"
@@ -144,8 +232,17 @@
                    android:layout_width="match_parent"
                    android:layout_marginBottom="10dp"
                    android:layout_height="wrap_content">
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="6.8"
+                       android:textSize="18sp"
+                       android:layout_margin="10dp"
+                       android:fontFamily="@font/montserrat_regular"
+                       android:text="Email"/>
 
                    <EditText
+                       android:layout_weight="3.2"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
                        android:id="@+id/et_email"
@@ -165,7 +262,17 @@
                    android:layout_marginBottom="10dp"
                    android:layout_height="wrap_content">
 
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="6.8"
+                       android:textSize="18sp"
+                       android:layout_margin="10dp"
+                       android:fontFamily="@font/montserrat_regular"
+                       android:text="Mobile"/>
+
                    <EditText
+                       android:layout_weight="3.2"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
                        android:id="@+id/et_mobile"
@@ -185,7 +292,17 @@
                    android:layout_marginBottom="10dp"
                    android:layout_height="wrap_content">
 
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="6"
+                       android:textSize="17.5sp"
+                       android:layout_margin="10dp"
+                       android:fontFamily="@font/montserrat_regular"
+                       android:text="Username"/>
+
                    <EditText
+                       android:layout_weight="4"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
                        android:id="@+id/et_username"
@@ -198,41 +315,58 @@
 
                </LinearLayout>
 
-
-               <RelativeLayout
-                   android:background="@drawable/edit_text_bg"
+               <LinearLayout
                    android:layout_width="match_parent"
-                   android:layout_marginBottom="10dp"
-                   android:orientation="horizontal"
+                   android:layout_height="wrap_content"
                    android:weightSum="10"
-                   android:layout_height="wrap_content">
+                   android:background="@drawable/edit_text_bg"
+                   android:orientation="horizontal">
 
-                   <EditText
+                   <TextView
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:id="@+id/et_password"
-                       android:hint="Password"
-                       android:layout_alignRight="@+id/showPassword"
+                       android:layout_weight="6"
+                       android:textSize="17.5sp"
+                       android:id="@+id/tv_username"
+                       android:layout_margin="10dp"
                        android:fontFamily="@font/montserrat_regular"
-                       android:layout_marginTop="10dp"
-                       android:layout_marginBottom="10dp"
-                       android:layout_marginLeft="10dp"
-                       android:maxLines="1"
-                       android:inputType="textPassword"
-                       android:background="@color/transparent"
-                       android:maxLength="25"/>
+                       android:text="Password"/>
 
-                   <Button
-                       android:layout_width="25dp"
-                       android:layout_height="25dp"
-                       android:layout_alignParentRight="true"
-                       android:layout_centerInParent="true"
-                       android:id="@+id/showPassword"
-                       android:layout_marginBottom="10dp"
-                       android:layout_marginRight="10dp"
-                       android:background="@drawable/eye"/>
+                   <RelativeLayout
+                       android:layout_width="match_parent"
+                       android:orientation="horizontal"
+                       android:layout_weight="4"
+                       android:layout_height="wrap_content">
 
-               </RelativeLayout>
+                       <EditText
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:id="@+id/et_password"
+                           android:hint="Password"
+                           android:layout_alignRight="@+id/showPassword"
+                           android:fontFamily="@font/montserrat_regular"
+                           android:layout_marginTop="10dp"
+                           android:layout_marginBottom="10dp"
+                           android:layout_marginLeft="10dp"
+                           android:maxLines="1"
+                           android:inputType="textPassword"
+                           android:background="@color/transparent"
+                           android:maxLength="25"/>
+
+                       <Button
+                           android:layout_width="25dp"
+                           android:layout_height="25dp"
+                           android:layout_alignParentRight="true"
+                           android:layout_centerInParent="true"
+                           android:id="@+id/showPassword"
+                           android:layout_marginBottom="10dp"
+                           android:layout_marginRight="10dp"
+                           android:background="@drawable/eye"/>
+
+                   </RelativeLayout>
+
+               </LinearLayout>
+
 
                <Button
                    android:layout_width="match_parent"

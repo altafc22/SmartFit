@@ -21,10 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jarvisnzikra.www.smartfit.R;
-import com.jarvisnzikra.www.smartfit.RequestHandler;
-import com.jarvisnzikra.www.smartfit.URLs;
-import com.jarvisnzikra.www.smartfit.User;
-import com.jarvisnzikra.www.smartfit.UserSharedPrefManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     RadioGroup radioGroupGender;
     TextView tv_dob;
-    EditText etUsername,etPassword,etName,etWeight,etHeight,etEmail,etMobile;
+    EditText etUsername,etPassword,etName,etWeight,etHeight_ft,etHeight_in,etEmail,etMobile;
 
     final Calendar myCalendar = Calendar.getInstance();
     final Calendar myCalendar2 = Calendar.getInstance();
@@ -52,7 +48,8 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         etName =findViewById(R.id.et_name);
-        etHeight =findViewById(R.id.et_height);
+        etHeight_ft =findViewById(R.id.et_height_ft);
+        etHeight_in =findViewById(R.id.et_height_in);
         etWeight =findViewById(R.id.et_weight);
         radioGroupGender =findViewById(R.id.radioGroupGender);
         radioGroupGender =findViewById(R.id.radioGroupGender);
@@ -117,11 +114,11 @@ public class RegisterActivity extends AppCompatActivity {
         tv_dob.setText(sdf.format(myCalendar.getTime()));
     }
 
-    public void saveData(View v)
-    {
+    public void saveData(View v) {
 
         final String name = etName.getText().toString().trim();
-        final String height = etHeight.getText().toString().trim();
+        final String height_ft = etHeight_ft.getText().toString().trim();
+        final String height_in = etHeight_in.getText().toString().trim();
         final String weight = etWeight.getText().toString().trim();
         final String gender = ((RadioButton) findViewById(radioGroupGender.getCheckedRadioButtonId())).getText().toString();
         final String dob = tv_dob.getText().toString().trim();
@@ -130,9 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
         final String username = etUsername.getText().toString().trim();
         final String password = etPassword.getText().toString().trim();
 
-
         //first we will do the validations
-
 
         if (TextUtils.isEmpty(name)) {
             etName.setError("Please enter name");
@@ -140,26 +135,30 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(height)) {
-            etHeight.setError("Please enter height in cm");
-            etHeight.requestFocus();
+        if (TextUtils.isEmpty(height_ft)) {
+            etHeight_ft.setError("Please enter height in foot");
+            etHeight_ft.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(height_in)) {
+            etHeight_in.setError("Please enter height in cm");
+            etHeight_in.setText("0");
+            etHeight_in.requestFocus();
             return;
         }
 
         if (TextUtils.isEmpty(weight)) {
-            etHeight.setError("Please enter height in cm");
-            etHeight.requestFocus();
+            etWeight.setError("Please enter height in cm");
+            etWeight.requestFocus();
             return;
         }
 
         RadioButton rd = findViewById(R.id.rd_male);
-        if (radioGroupGender.getCheckedRadioButtonId() == -1)
-        {
+        if (radioGroupGender.getCheckedRadioButtonId() == -1) {
 
             rd.setError("please select gender");
-        }
-        else
-        {
+        } else {
             rd.setError(null);
         }
 
@@ -200,7 +199,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         //if it passes all the validations
-
+        /*
         class RegisterUser extends AsyncTask<Void, Void, String> {
 
             private ProgressBar progressBar;
@@ -216,7 +215,8 @@ public class RegisterActivity extends AppCompatActivity {
                 params.put("password", password);
                 params.put("email", email);
                 params.put("name", name);
-                params.put("height",height);
+                params.put("height_ft",height_ft);
+                params.put("height_in",height_in);
                 params.put("weight",weight);
                 params.put("gender", gender);
                 params.put("dob",dob);
@@ -250,6 +250,7 @@ public class RegisterActivity extends AppCompatActivity {
                         //getting the user from the response
                         JSONObject userJson = obj.getJSONObject("user");
 
+
                         //creating a new user object
                         User user = new User(
                                 userJson.getInt("id"),
@@ -257,7 +258,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 userJson.getString("password"),
                                 userJson.getString("email"),
                                 userJson.getString("name"),
-                                userJson.getString("height"),
+                                userJson.getString("height_ft"),
+                                userJson.getString("height_in"),
                                 userJson.getString("weight"),
                                 userJson.getString("gender"),
                                 userJson.getString("dob"),
@@ -283,5 +285,6 @@ public class RegisterActivity extends AppCompatActivity {
         RegisterUser ru = new RegisterUser();
         ru.execute();
     }
-
+    */
+    }
 }

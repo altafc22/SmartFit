@@ -66,8 +66,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private BroadcastReceiver mReceiver;
     private Intent intent;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,7 +119,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
     private void updateRunningDistance() {
-
         Date date_time = Calendar.getInstance().getTime();
         String time = new SimpleDateFormat("hh : mm a", Locale.getDefault()).format(date_time);
         String date = new SimpleDateFormat("EEEE dd-MM-yyyy", Locale.getDefault()).format(date_time);
@@ -241,8 +238,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             updateUI(intent);
         }
     };
-
-
 
 
     private void updateUI(Intent intent) {
